@@ -19,7 +19,7 @@ namespace EIReHex
             public const string RunAmountDouble = "RunAmountDouble";
             public const string RunAmountRedirectBattle = "RunAmountInjectionBattle";
             public const string RunAmountRedirectMana = "RunAmountInjectionMana";
-            public const string RunAmountLogicBattleOrMana = "RunAmountLogicBattle";
+            public const string RunAmountLogicBattleOnly = "RunAmountLogicBattle";
             public const string RunAmountLogicBattleAndMana = "RunAmountLogicBattleMana";
 
             public const string SpellConstructor1 = "SpellConstructor1";
@@ -36,16 +36,16 @@ namespace EIReHex
                 "70 72 55 00 11 EF E6 B4 81 4E 6B 3F 00 00 70 42"),
             new Replacement(Feature.RunAmountRedirectBattle,
                 "00 6A 06 EB 75 D9 47 14 D9 47 18 DC 0D 88 F0 73 00 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4",
-                "00 6A 06 EB 75 D9 47 14 D9 47 18 E9 60 23 1F 00 90 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4"),
+                "00 6A 06 EB 75 E9 66 23 1F 00 90 90 90 90 90 90 90 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4"),
             new Replacement(Feature.RunAmountRedirectMana,
                 "00 6A 06 EB 75 D9 47 14 D9 47 18 DC 0D 88 F0 73 00 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4",
-                "00 6A 06 EB 75 D9 47 14 D9 47 18 E9 8C 23 1F 00 90 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4"),
-            new Replacement(Feature.RunAmountLogicBattleOrMana,
-                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
-                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 8B 15 60 F7 7A 00 83 7A 40 01 74 10 D8 0D DC 12 79 00 BA 00 00 00 00 E9 85 DC E0 FF DC 0D 88 F0 73 00 BA 00 00 00 00 E9 75 DC E0 FF 8B 57 18 DD D8 C7 47 18 7B 14 6E 3F D9 47 18 89 57 18 BA 00 00 00 00 E9 59 DC E0 FF"),
+                "00 6A 06 EB 75 E9 94 23 1F 00 90 90 90 90 90 90 90 DE E9 D9 57 14 D8 1D 58 B8 73 00 DF E0 F6 C4"),
+            new Replacement(Feature.RunAmountLogicBattleOnly,
+                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 52 8B 15 60 F7 7A 00 83 7A 40 01 5A 74 20 D9 47 18 D9 47 14 DE E9 D8 5F 14 DF E0 F6 C4 01 75 0E D9 47 14 D9 05 DC 12 79 00 E9 73 DC E0 FF D9 47 14 D9 47 18 DC 0D 88 F0 73 00 E9 62 DC E0 FF 00 00 00 00 00 00 00"),
             new Replacement(Feature.RunAmountLogicBattleAndMana,
-                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
-                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 8B 15 60 F7 7A 00 83 7A 40 01 74 10 D8 0D DC 12 79 00 BA 00 00 00 00 E9 85 DC E0 FF 90 90 90 90 90 90 BA 00 00 00 00 E9 75 DC E0 FF 8B 57 18 DD D8 C7 47 18 7B 14 6E 3F D9 47 18 89 57 18 BA 00 00 00 00 EB BB 00 00 00"),
+                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 52 8B 15 60 F7 7A 00 83 7A 40 01 5A 74 20 D9 47 18 D9 47 14 DE E9 D8 5F 14 DF E0 F6 C4 01 75 0E D9 47 14 D9 05 DC 12 79 00 E9 73 DC E0 FF FF 77 18 C7 47 18 7B 14 6E 3F D9 47 14 D9 47 18 8F 47 18 E9 5B DC E0 FF"),
 
 
             new Replacement(Feature.SpellConstructor1,
@@ -74,7 +74,7 @@ namespace EIReHex
                 "01 00 00 02 00 00 00 E9 31 F7 07 00 90 89 81 50 01 00 00 8B 15 E4 40 74 00 89 91 50 01 00 00 89 81 5C 01 00 00 C3 90 90 90 90 90 90 90 90 90 90 90 8B 91 98 08 00 00 33 C0 3B D0 74 28 C7 81 54 01 00 00 01 00 00 00 E9 06 F7 07 00 90 89 81 50"),
             new Replacement(Feature.GameSpeedVillageDialog2, // do not check with IsFeatureActive()
                 "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF",
-                "89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 BB 08 F8 FF 89 81 58 01 00 00 C7 05 34 FF 78 00 XX 00 00 00 E9 E6 08 F8 FF", 156),
+                "89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 BB 08 F8 FF 89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 E6 08 F8 FF", 156),
             new Replacement(Feature.GameSpeedVillageDialog3, // do not check with IsFeatureApplicable()
                 "89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 BB 08 F8 FF 89 81 58 01 00 00 C7 05 34 FF 78 00 XX 00 00 00 E9 E6 08 F8 FF", null),
             new Replacement(Feature.GameSpeedNormalHK,

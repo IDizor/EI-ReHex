@@ -100,7 +100,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Бег не расходует запас сил, если вы не в бою. Это экономит наше время, когда надо преодолеть большие расстояния..
+        ///   Looks up a localized string similar to Если вы не в бою - бег расходует только половину запас сил, и персонаж продолжает бежать. Это экономит наше время, когда надо преодолеть большие расстояния..
         /// </summary>
         public static string RunAmountBattleCB {
             get {

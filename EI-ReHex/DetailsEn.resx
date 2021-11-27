@@ -133,8 +133,7 @@ x2 for low position and x3 for high position.</value>
 Note: characters can still gain different amount of experience, it depends on their intelligence.</value>
   </data>
   <data name="RunAmountBattleCB" xml:space="preserve">
-    <value>Stamina does not decrease while running if the character is not fighting.
-This feature saves our time when need to run over the location.</value>
+    <value>Stamina does not decrease below half while running if the character is not fighting. This feature saves our time when need to run over the location.</value>
   </data>
   <data name="RunAmountDefaultRB" xml:space="preserve">
     <value>Default running time for characters.</value>

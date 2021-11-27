@@ -206,7 +206,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Тратится только в бою.
+        ///   Looks up a localized string similar to Тратится до конца только в бою.
         /// </summary>
         public static string RunAmountBattleCB {
             get {

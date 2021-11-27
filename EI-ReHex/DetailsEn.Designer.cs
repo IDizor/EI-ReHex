@@ -100,8 +100,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stamina does not decrease while running if the character is not fighting.
-        ///This feature saves our time when need to run over the location..
+        ///   Looks up a localized string similar to Stamina does not decrease below half while running if the character is not fighting. This feature saves our time when need to run over the location..
         /// </summary>
         public static string RunAmountBattleCB {
             get {

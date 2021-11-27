@@ -162,18 +162,18 @@ namespace EIReHex
                 RunAmountDoubleRB.Enabled = RunAmountDefaultRB.Enabled;
                 RunAmountDoubleRB.Checked = IsFeatureActive(Feature.RunAmountDouble);
 
-                var runAmountManaBattleEnabled = IsFeatureApplicable(Feature.RunAmountRedirectMana)
-                    && IsFeatureApplicable(Feature.RunAmountLogicBattleOrMana);
+                var runAmountManaBattleEnabled = IsFeatureApplicable(Feature.RunAmountRedirectBattle)
+                    && IsFeatureApplicable(Feature.RunAmountLogicBattleOnly);
                 var redirectMana = IsFeatureActive(Feature.RunAmountRedirectMana);
                 var redirectBattle = IsFeatureActive(Feature.RunAmountRedirectBattle);
-                var battleOrMana = IsFeatureActive(Feature.RunAmountLogicBattleOrMana);
+                var battleOnly = IsFeatureActive(Feature.RunAmountLogicBattleOnly);
                 var battleAndMana = IsFeatureActive(Feature.RunAmountLogicBattleAndMana);
 
                 RunAmountManaRB.Enabled = runAmountManaBattleEnabled;
-                RunAmountManaRB.Checked = redirectMana && (battleOrMana || battleAndMana);
+                RunAmountManaRB.Checked = battleAndMana && (redirectMana || redirectBattle);
 
                 RunAmountBattleCB.Enabled = runAmountManaBattleEnabled;
-                RunAmountBattleCB.Checked = (redirectBattle && battleOrMana) || (redirectMana && battleAndMana);
+                RunAmountBattleCB.Checked = redirectBattle && (battleOnly || battleAndMana);
 
                 GameSpeedDefaultRB.Checked = true;
                 GameSpeedDefaultRB.Enabled = IsFeatureApplicable(Feature.GameSpeedNormalUI)
@@ -254,26 +254,27 @@ namespace EIReHex
                 }
 
                 DeactivateFeature(Feature.RunAmountRedirectBattle);
-                DeactivateFeature(Feature.RunAmountLogicBattleOrMana);
-                if (RunAmountManaRB.Checked)
+                DeactivateFeature(Feature.RunAmountLogicBattleOnly);
+
+                if (RunAmountBattleCB.Checked)
                 {
-                    if (RunAmountBattleCB.Checked)
+                    ActivateFeature(Feature.RunAmountRedirectBattle);
+
+                    if (RunAmountManaRB.Checked)
                     {
-                        ActivateFeature(Feature.RunAmountRedirectMana);
                         ActivateFeature(Feature.RunAmountLogicBattleAndMana);
                     }
                     else
                     {
-                        ActivateFeature(Feature.RunAmountRedirectMana);
-                        ActivateFeature(Feature.RunAmountLogicBattleOrMana);
+                        ActivateFeature(Feature.RunAmountLogicBattleOnly);
                     }
                 }
                 else
                 {
-                    if (RunAmountBattleCB.Checked)
+                    if (RunAmountManaRB.Checked)
                     {
-                        ActivateFeature(Feature.RunAmountRedirectBattle);
-                        ActivateFeature(Feature.RunAmountLogicBattleOrMana);
+                        ActivateFeature(Feature.RunAmountRedirectMana);
+                        ActivateFeature(Feature.RunAmountLogicBattleAndMana);
                     }
                 }
 

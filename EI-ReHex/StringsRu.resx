@@ -167,7 +167,7 @@
     <value>Полный опыт для всех в группе</value>
   </data>
   <data name="RunAmountBattleCB" xml:space="preserve">
-    <value>Тратится только в бою</value>
+    <value>Тратится до конца только в бою</value>
   </data>
   <data name="RunAmountDefaultRB" xml:space="preserve">
     <value>Стандартное время</value>
