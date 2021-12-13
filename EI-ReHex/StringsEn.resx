@@ -197,7 +197,7 @@
     <value>Default speed</value>
   </data>
   <data name="VillageSpeedGroupBox" xml:space="preserve">
-    <value>Game speed in Villages</value>
+    <value>Game speed in briefing zones</value>
   </data>
   <data name="VillageSpeedX2RB" xml:space="preserve">
     <value>High speed</value>

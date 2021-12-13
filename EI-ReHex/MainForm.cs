@@ -191,16 +191,15 @@ namespace EIReHex
                 GameSpeedSuperCB.Checked = IsFeatureActive(Feature.GameSpeedFastUI, GameSpeeds[3]);
 
                 VillageSpeedDefaultRB.Checked = true;
-                VillageSpeedDefaultRB.Enabled = IsFeatureApplicable(Feature.GameSpeedVillage) && IsFeatureApplicable(Feature.GameSpeedVillageDialog1) && IsFeatureApplicable(Feature.GameSpeedVillageDialog2);
+                VillageSpeedDefaultRB.Enabled = IsFeatureApplicable(Feature.GameSpeedVillageRedirect) && IsFeatureApplicable(Feature.GameSpeedVillageSet1) && IsFeatureApplicable(Feature.GameSpeedVillageDialog1) && IsFeatureApplicable(Feature.GameSpeedVillageDialog2);
                 VillageSpeedX2RB.Enabled = VillageSpeedDefaultRB.Enabled;
                 VillageSpeedX3RB.Enabled = VillageSpeedDefaultRB.Enabled;
                 if (VillageSpeedDefaultRB.Enabled)
                 {
-                    var defaultSpeedIsAlreadySet = IsFeatureActive(Feature.GameSpeedVillage, GameSpeeds[0]);
-                    if (!defaultSpeedIsAlreadySet)
+                    if (IsFeatureActive(Feature.GameSpeedVillageRedirect))
                     {
-                        VillageSpeedX2RB.Checked = IsFeatureActive(Feature.GameSpeedVillage, GameSpeeds[1]) && IsFeatureActive(Feature.GameSpeedVillageDialog3, GameSpeeds[1]);
-                        VillageSpeedX3RB.Checked = !VillageSpeedX2RB.Checked && IsFeatureActive(Feature.GameSpeedVillage, GameSpeeds[2]) && IsFeatureActive(Feature.GameSpeedVillageDialog3, GameSpeeds[2]);
+                        VillageSpeedX2RB.Checked = IsFeatureActive(Feature.GameSpeedVillageSet2, GameSpeeds[1]);
+                        VillageSpeedX3RB.Checked = !VillageSpeedX2RB.Checked && IsFeatureActive(Feature.GameSpeedVillageSet2, GameSpeeds[2]);
                     }
                 }
 
@@ -302,17 +301,24 @@ namespace EIReHex
 
                 if (VillageSpeedDefaultRB.Checked)
                 {
-                    ActivateFeature(Feature.GameSpeedVillage, GameSpeeds[0]);
                     DeactivateFeature(Feature.GameSpeedVillageDialog1);
                     DeactivateFeature(Feature.GameSpeedVillageDialog2);
+                    DeactivateFeature(Feature.GameSpeedVillageRedirect);
+                    DeactivateFeature(Feature.GameSpeedVillageSet1);
                 }
                 else if (VillageSpeedX2RB.Checked || VillageSpeedX3RB.Checked)
                 {
                     var speed = VillageSpeedX2RB.Checked ? GameSpeeds[1] : GameSpeeds[2];
-                    ActivateFeature(Feature.GameSpeedVillage, speed);
+                    
+                    // speed setters for dialog begin/end events
                     ActivateFeature(Feature.GameSpeedVillageDialog1);
                     ActivateFeature(Feature.GameSpeedVillageDialog2);
                     ActivateFeature(Feature.GameSpeedVillageDialog3, speed);
+
+                    // speed setter for briefing zone enter event
+                    ActivateFeature(Feature.GameSpeedVillageRedirect);
+                    ActivateFeature(Feature.GameSpeedVillageSet1);
+                    ActivateFeature(Feature.GameSpeedVillageSet2, speed);
                 }
 
                 if (SpellConstuctorCB.Checked)
@@ -357,20 +363,6 @@ namespace EIReHex
                 EnableControls<Control>();
                 LoadGameExe(GetResourceString(DoneText));
                 Application.DoEvents();
-
-                // validation
-                /*var currentSettings = GetSettings();
-                var exeBak = ExeBytes;
-                LoadGameExe();
-                Application.DoEvents();
-                var reloadedSettings = GetSettings();
-
-                if (currentSettings != reloadedSettings)
-                {
-                    File.WriteAllBytes(Config.GameExePath, exeBak);
-                    MessageBox.Show(currentSettings + Environment.NewLine + reloadedSettings, Text);
-                    LoadGameExe();
-                }*/
             }
         }
 

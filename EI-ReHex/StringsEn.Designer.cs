@@ -296,7 +296,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game speed in Villages.
+        ///   Looks up a localized string similar to Game speed in briefing zones.
         /// </summary>
         public static string VillageSpeedGroupBox {
             get {

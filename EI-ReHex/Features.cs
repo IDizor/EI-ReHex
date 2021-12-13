@@ -6,10 +6,14 @@ namespace EIReHex
     {
         private static class Feature
         {
-            public const string GameSpeedVillage = "GameSpeedVillage";
-            public const string GameSpeedVillageDialog1 = "GameSpeedVillageDialog1";
+            public const string GameSpeedVillageDialog1 = "GameSpeedVillageDialog1"; // dialog begin/end events
             public const string GameSpeedVillageDialog2 = "GameSpeedVillageDialog2";
             public const string GameSpeedVillageDialog3 = "GameSpeedVillageDialog3";
+
+            public const string GameSpeedVillageRedirect = "GameSpeedVillageRedirect"; // briefing zone enter event
+            public const string GameSpeedVillageSet1 = "GameSpeedVillageSet1";
+            public const string GameSpeedVillageSet2 = "GameSpeedVillageSet2";
+
             public const string GameSpeedNormalHK = "GameSpeedNormalHK";
             public const string GameSpeedNormalUI = "GameSpeedNormalUI";
             public const string GameSpeedFastHK = "GameSpeedFastHK";
@@ -67,8 +71,6 @@ namespace EIReHex
                 "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF",
                 "50 8B 85 C4 00 00 00 83 F8 03 58 75 09 02 4D 58 2A 8D C8 00 00 00 8A 18 02 CB 40 3B C2 75 F7 E9 9B DA DE FF", 120),
 
-            new Replacement(Feature.GameSpeedVillage,
-                "4C 24 08 5E 64 89 0D 00 00 00 00 83 C4 10 C3 90 56 8B F1 8B 0D B0 B2 79 00 6A 00 83 C9 40 C7 05 34 FF 78 00 XX 00 00 00 89 0D B0 B2 79 00 B9 D8", null),
             new Replacement(Feature.GameSpeedVillageDialog1,
                 "01 00 00 02 00 00 00 89 81 58 01 00 00 89 81 50 01 00 00 8B 15 E4 40 74 00 89 91 50 01 00 00 89 81 5C 01 00 00 C3 90 90 90 90 90 90 90 90 90 90 90 8B 91 98 08 00 00 33 C0 3B D0 74 28 C7 81 54 01 00 00 01 00 00 00 89 81 58 01 00 00 89 81 50",
                 "01 00 00 02 00 00 00 E9 31 F7 07 00 90 89 81 50 01 00 00 8B 15 E4 40 74 00 89 91 50 01 00 00 89 81 5C 01 00 00 C3 90 90 90 90 90 90 90 90 90 90 90 8B 91 98 08 00 00 33 C0 3B D0 74 28 C7 81 54 01 00 00 01 00 00 00 E9 06 F7 07 00 90 89 81 50"),
@@ -77,6 +79,14 @@ namespace EIReHex
                 "89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 BB 08 F8 FF 89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 E6 08 F8 FF", 156),
             new Replacement(Feature.GameSpeedVillageDialog3, // do not check with IsFeatureApplicable()
                 "89 81 58 01 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 BB 08 F8 FF 89 81 58 01 00 00 C7 05 34 FF 78 00 XX 00 00 00 E9 E6 08 F8 FF", null),
+            new Replacement(Feature.GameSpeedVillageRedirect,
+                "25 00 00 00 00 51 53 55 56 8B F1 57 6A 04 C7 46 38 02 00 00 00 8B 0D 84 F7 7A 00 E8 80 62",
+                "25 00 00 00 00 51 53 55 56 8B F1 57 6A 04 E9 63 57 08 00 90 90 8B 0D 84 F7 7A 00 E8 80 62"),
+            new Replacement(Feature.GameSpeedVillageSet1, // do not check with IsFeatureActive()
+                "E0 01 85 C0 0F 84 0B 00 00 00 8B 4D EC 83 C1 08 E9 77 28 FC FF C3 B8 38 FC 77 00 E9 1C CE FA FF",
+                "C7 46 38 02 00 00 00 C7 05 34 FF 78 00 37 00 00 00 E9 89 A8 F7 FF", 198),
+            new Replacement(Feature.GameSpeedVillageSet2, // do not check with IsFeatureApplicable()
+                "C7 46 38 02 00 00 00 C7 05 34 FF 78 00 XX 00 00 00 E9 89 A8 F7 FF", null),
             new Replacement(Feature.GameSpeedNormalHK,
                 "8B 8E 98 00 00 00 55 68 7C 44 79 00 E8 0F D7 FB FF 89 AE 54 01 00 00 C7 05 34 FF 78 00 XX 00 00 00 8B 96 98 00 00 00 8B 86 54 01 00 00 89 82 94", null),
             new Replacement(Feature.GameSpeedNormalUI,

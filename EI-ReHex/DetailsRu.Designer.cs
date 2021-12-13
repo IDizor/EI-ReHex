@@ -154,7 +154,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Скорость игры в посёлках по умолчанию (x1)..
+        ///   Looks up a localized string similar to Скорость игры в поселениях / городах / лагерях по умолчанию (x1)..
         /// </summary>
         public static string VillageSpeedDefaultRB {
             get {
@@ -163,7 +163,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Скорость игры в посёлках x2..
+        ///   Looks up a localized string similar to Скорость игры в поселениях / городах / лагерях x2..
         /// </summary>
         public static string VillageSpeedX2RB {
             get {
@@ -172,7 +172,7 @@ namespace EIReHex {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Скорость игры в посёлках x3..
+        ///   Looks up a localized string similar to Скорость игры в поселениях / городах / лагерях x3..
         /// </summary>
         public static string VillageSpeedX3RB {
             get {

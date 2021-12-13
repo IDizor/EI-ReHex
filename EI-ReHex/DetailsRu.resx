@@ -151,12 +151,12 @@
     <value>Эта настройка позволяет создавать сложные заклинания, даже если персонаж не сможет их использовать. Это очень полезно когда необходимо создать заклинание для магических жезлов или вещей.</value>
   </data>
   <data name="VillageSpeedDefaultRB" xml:space="preserve">
-    <value>Скорость игры в посёлках по умолчанию (x1).</value>
+    <value>Скорость игры в поселениях / городах / лагерях по умолчанию (x1).</value>
   </data>
   <data name="VillageSpeedX2RB" xml:space="preserve">
-    <value>Скорость игры в посёлках x2.</value>
+    <value>Скорость игры в поселениях / городах / лагерях x2.</value>
   </data>
   <data name="VillageSpeedX3RB" xml:space="preserve">
-    <value>Скорость игры в посёлках x3.</value>
+    <value>Скорость игры в поселениях / городах / лагерях x3.</value>
   </data>
 </root>

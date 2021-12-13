@@ -197,7 +197,7 @@
     <value>Стандартная скорость</value>
   </data>
   <data name="VillageSpeedGroupBox" xml:space="preserve">
-    <value>Скорость игры в посёлках</value>
+    <value>Скорость игры в мирных зонах</value>
   </data>
   <data name="VillageSpeedX2RB" xml:space="preserve">
     <value>Высокая скорость</value>
