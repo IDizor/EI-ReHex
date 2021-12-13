@@ -179,6 +179,15 @@ namespace EIReHex {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected file is incompatible with current program version..
+        /// </summary>
+        public static string IncompatibleFile {
+            get {
+                return ResourceManager.GetString("IncompatibleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyzing file....
         /// </summary>
         public static string LoadingText {
@@ -193,6 +202,15 @@ namespace EIReHex {
         public static string MiscellaneousGroupBox {
             get {
                 return ResourceManager.GetString("MiscellaneousGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected file is partially incompatible with current program version. Please make sure the backup checkbox is checked and then apply changes..
+        /// </summary>
+        public static string PartiallyCompatibleFile {
+            get {
+                return ResourceManager.GetString("PartiallyCompatibleFile", resourceCulture);
             }
         }
         

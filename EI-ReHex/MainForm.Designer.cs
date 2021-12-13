@@ -61,7 +61,7 @@ namespace EIReHex
             this.EnButton = new System.Windows.Forms.Button();
             this.RuButton = new System.Windows.Forms.Button();
             this.DetailsTimer = new System.Windows.Forms.Timer(this.components);
-            this.GitHubLink = new LinkLabelEx();
+            this.GitHubLink = new EIReHex.LinkLabelEx();
             this.RunAmountGroupBox.SuspendLayout();
             this.GameSpeedGroupBox.SuspendLayout();
             this.VillageSpeedGroupBox.SuspendLayout();
@@ -436,7 +436,7 @@ namespace EIReHex
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Evil Islands - ReHex v1.0";
+            this.Text = "Evil Islands modifier - ReHex v1.0";
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MouseEnter += new System.EventHandler(this.Control_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.Control_MouseLeave);
@@ -488,7 +488,7 @@ namespace EIReHex
         private System.Windows.Forms.RadioButton VillageSpeedX3RB;
         private System.Windows.Forms.Label DetailsLabel;
         private System.Windows.Forms.Timer DetailsTimer;
-        private System.Windows.Forms.LinkLabel GitHubLink;
+        private LinkLabelEx GitHubLink;
     }
 }
 

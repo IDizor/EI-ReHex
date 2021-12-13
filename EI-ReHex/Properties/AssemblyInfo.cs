@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("EI-ReHex")]
 [assembly: AssemblyDescription("Evil Islands game.exe modifier.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dizor")]
+[assembly: AssemblyCompany("IDizor")]
 [assembly: AssemblyProduct("EI-ReHex")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]

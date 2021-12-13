@@ -157,11 +157,17 @@
   <data name="GameSpeedSuperCB" xml:space="preserve">
     <value>Супер скорость при выборе мышкой</value>
   </data>
+  <data name="IncompatibleFile" xml:space="preserve">
+    <value>Выбранный файл не совместим с текущей версией программы.</value>
+  </data>
   <data name="LoadingText" xml:space="preserve">
     <value>Определение настроек...</value>
   </data>
   <data name="MiscellaneousGroupBox" xml:space="preserve">
     <value>Разное</value>
+  </data>
+  <data name="PartiallyCompatibleFile" xml:space="preserve">
+    <value>Выбранный файл частично не совместим с текущей версией программы. Убедитесь что установлена галочка "Создать бекап" перед применением изменений.</value>
   </data>
   <data name="PartyExpCB" xml:space="preserve">
     <value>Полный опыт для всех в группе</value>

@@ -179,6 +179,15 @@ namespace EIReHex {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выбранный файл не совместим с текущей версией программы..
+        /// </summary>
+        public static string IncompatibleFile {
+            get {
+                return ResourceManager.GetString("IncompatibleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Определение настроек....
         /// </summary>
         public static string LoadingText {
@@ -193,6 +202,15 @@ namespace EIReHex {
         public static string MiscellaneousGroupBox {
             get {
                 return ResourceManager.GetString("MiscellaneousGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранный файл частично не совместим с текущей версией программы. Убедитесь что установлена галочка &quot;Создать бекап&quot; перед применением изменений..
+        /// </summary>
+        public static string PartiallyCompatibleFile {
+            get {
+                return ResourceManager.GetString("PartiallyCompatibleFile", resourceCulture);
             }
         }
         

@@ -157,11 +157,17 @@
   <data name="GameSpeedSuperCB" xml:space="preserve">
     <value>Super speed when clicked using mouse</value>
   </data>
+  <data name="IncompatibleFile" xml:space="preserve">
+    <value>Selected file is incompatible with current program version.</value>
+  </data>
   <data name="LoadingText" xml:space="preserve">
     <value>Analyzing file...</value>
   </data>
   <data name="MiscellaneousGroupBox" xml:space="preserve">
     <value>Miscellaneous</value>
+  </data>
+  <data name="PartiallyCompatibleFile" xml:space="preserve">
+    <value>Selected file is partially incompatible with current program version. Please make sure the backup checkbox is checked and then apply changes.</value>
   </data>
   <data name="PartyExpCB" xml:space="preserve">
     <value>Full exp value for party members</value>

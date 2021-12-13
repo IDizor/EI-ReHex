@@ -21,6 +21,8 @@ namespace EIReHex
         private const string ApplyingText = "ApplyingText";
         private const string DoneText = "DoneText";
         private const string FileNotFound = "FileNotFound";
+        private const string IncompatibleFile = "IncompatibleFile";
+        private const string PartiallyCompatibleFile = "PartiallyCompatibleFile";
         private const string AddonDllMsgCaption = "AddonDllMsgCaption";
         private const string AddonDllMsgText = "AddonDllMsgText";
         private const string AddonDllAlreadyFixed = "AddonDllAlreadyFixed";
@@ -134,6 +136,7 @@ namespace EIReHex
 
                 Config.Save();
                 LoadGameExe(GetResourceString(LoadingText));
+                CheckCompliance();
             }
         }
 
@@ -142,6 +145,7 @@ namespace EIReHex
             GameExePathTextBox.Text = Config.GameExePath;
             BackupCB.Checked = Config.MakeBackup;
             LoadGameExe(GetResourceString(LoadingText));
+            CheckCompliance();
         }
 
         private void LoadGameExe(string loadingText)
@@ -232,10 +236,33 @@ namespace EIReHex
             }
         }
 
+        private void CheckCompliance()
+        {
+            if (!string.IsNullOrWhiteSpace(Config.GameExePath) && File.Exists(Config.GameExePath))
+            {
+                var gbCount = Controls.Cast<Control>().Where(c => c is GroupBox).Count();
+                var gbEnabledCount = Controls.Cast<Control>().Where(c => c is GroupBox).Count(c => c.Enabled);
+
+                if (gbEnabledCount == 0)
+                {
+                    MessageBox.Show(GetResourceString(IncompatibleFile), Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (gbEnabledCount < gbCount)
+                {
+                    MessageBox.Show(GetResourceString(PartiallyCompatibleFile), Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             if (File.Exists(Config.GameExePath) && ExeBytes.Length > 0)
             {
+                var runAmountGroupBoxEnabled = RunAmountGroupBox.Enabled;
+                var gameSpeedGroupBoxEnabled = GameSpeedGroupBox.Enabled;
+                var villageSpeedGroupBoxEnabled = VillageSpeedGroupBox.Enabled;
+                var miscellaneousGroupBoxEnabled = MiscellaneousGroupBox.Enabled;
+
                 ApplyButton.Enabled = false;
                 EnableControls<Control>(false);
                 ShowLoading(GetResourceString(ApplyingText));
@@ -243,120 +270,132 @@ namespace EIReHex
 
                 ExeBytes = File.ReadAllBytes(Config.GameExePath);
 
-                if (RunAmountDoubleRB.Checked)
+                if (runAmountGroupBoxEnabled)
                 {
-                    ActivateFeature(Feature.RunAmountDouble);
-                }
-                else
-                {
-                    DeactivateFeature(Feature.RunAmountDouble);
-                }
-
-                DeactivateFeature(Feature.RunAmountRedirectBattle);
-                DeactivateFeature(Feature.RunAmountLogicBattleOnly);
-
-                if (RunAmountBattleCB.Checked)
-                {
-                    ActivateFeature(Feature.RunAmountRedirectBattle);
-
-                    if (RunAmountManaRB.Checked)
+                    if (RunAmountDoubleRB.Checked)
                     {
-                        ActivateFeature(Feature.RunAmountLogicBattleAndMana);
+                        ActivateFeature(Feature.RunAmountDouble);
                     }
                     else
                     {
-                        ActivateFeature(Feature.RunAmountLogicBattleOnly);
+                        DeactivateFeature(Feature.RunAmountDouble);
                     }
-                }
-                else
-                {
-                    if (RunAmountManaRB.Checked)
+
+                    DeactivateFeature(Feature.RunAmountRedirectBattle);
+                    DeactivateFeature(Feature.RunAmountLogicBattleOnly);
+
+                    if (RunAmountBattleCB.Checked)
                     {
-                        ActivateFeature(Feature.RunAmountRedirectMana);
-                        ActivateFeature(Feature.RunAmountLogicBattleAndMana);
+                        ActivateFeature(Feature.RunAmountRedirectBattle);
+
+                        if (RunAmountManaRB.Checked)
+                        {
+                            ActivateFeature(Feature.RunAmountLogicBattleAndMana);
+                        }
+                        else
+                        {
+                            ActivateFeature(Feature.RunAmountLogicBattleOnly);
+                        }
+                    }
+                    else
+                    {
+                        if (RunAmountManaRB.Checked)
+                        {
+                            ActivateFeature(Feature.RunAmountRedirectMana);
+                            ActivateFeature(Feature.RunAmountLogicBattleAndMana);
+                        }
                     }
                 }
 
-                if (GameSpeedDefaultRB.Checked)
+                if (gameSpeedGroupBoxEnabled)
                 {
-                    ActivateFeature(Feature.GameSpeedNormalHK, GameSpeeds[0]);
-                    ActivateFeature(Feature.GameSpeedNormalUI, GameSpeeds[0]);
-                    ActivateFeature(Feature.GameSpeedFastHK, GameSpeeds[1]);
-                    ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[1]);
-                    ActivateFeature(Feature.GameSpeedRestore, (byte)(256 - GameSpeeds[0] + GameSpeeds[1]), GameSpeeds[0]);
-                }
-                else if (GameSpeedFastRB.Checked)
-                {
-                    ActivateFeature(Feature.GameSpeedNormalHK, GameSpeeds[1]);
-                    ActivateFeature(Feature.GameSpeedNormalUI, GameSpeeds[1]);
-                    ActivateFeature(Feature.GameSpeedFastHK, GameSpeeds[2]);
-                    ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[2]);
-                    ActivateFeature(Feature.GameSpeedRestore, (byte)(256 - GameSpeeds[1] + GameSpeeds[2]), GameSpeeds[1]);
+                    if (GameSpeedDefaultRB.Checked)
+                    {
+                        ActivateFeature(Feature.GameSpeedNormalHK, GameSpeeds[0]);
+                        ActivateFeature(Feature.GameSpeedNormalUI, GameSpeeds[0]);
+                        ActivateFeature(Feature.GameSpeedFastHK, GameSpeeds[1]);
+                        ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[1]);
+                        ActivateFeature(Feature.GameSpeedRestore, (byte)(256 - GameSpeeds[0] + GameSpeeds[1]), GameSpeeds[0]);
+                    }
+                    else if (GameSpeedFastRB.Checked)
+                    {
+                        ActivateFeature(Feature.GameSpeedNormalHK, GameSpeeds[1]);
+                        ActivateFeature(Feature.GameSpeedNormalUI, GameSpeeds[1]);
+                        ActivateFeature(Feature.GameSpeedFastHK, GameSpeeds[2]);
+                        ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[2]);
+                        ActivateFeature(Feature.GameSpeedRestore, (byte)(256 - GameSpeeds[1] + GameSpeeds[2]), GameSpeeds[1]);
+                    }
+
+                    if (GameSpeedSuperCB.Checked)
+                    {
+                        ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[3]);
+                    }
                 }
 
-                if (GameSpeedSuperCB.Checked)
+                if (villageSpeedGroupBoxEnabled)
                 {
-                    ActivateFeature(Feature.GameSpeedFastUI, GameSpeeds[3]);
+                    if (VillageSpeedDefaultRB.Checked)
+                    {
+                        DeactivateFeature(Feature.GameSpeedVillageDialog1);
+                        DeactivateFeature(Feature.GameSpeedVillageDialog2);
+                        DeactivateFeature(Feature.GameSpeedVillageRedirect);
+                        DeactivateFeature(Feature.GameSpeedVillageSet1);
+                    }
+                    else if (VillageSpeedX2RB.Checked || VillageSpeedX3RB.Checked)
+                    {
+                        var speed = VillageSpeedX2RB.Checked ? GameSpeeds[1] : GameSpeeds[2];
+
+                        // speed setters for dialog begin/end events
+                        ActivateFeature(Feature.GameSpeedVillageDialog1);
+                        ActivateFeature(Feature.GameSpeedVillageDialog2);
+                        ActivateFeature(Feature.GameSpeedVillageDialog3, speed);
+
+                        // speed setter for briefing zone enter event
+                        ActivateFeature(Feature.GameSpeedVillageRedirect);
+                        ActivateFeature(Feature.GameSpeedVillageSet1);
+                        ActivateFeature(Feature.GameSpeedVillageSet2, speed);
+                    }
                 }
 
-                if (VillageSpeedDefaultRB.Checked)
+                if (miscellaneousGroupBoxEnabled)
                 {
-                    DeactivateFeature(Feature.GameSpeedVillageDialog1);
-                    DeactivateFeature(Feature.GameSpeedVillageDialog2);
-                    DeactivateFeature(Feature.GameSpeedVillageRedirect);
-                    DeactivateFeature(Feature.GameSpeedVillageSet1);
-                }
-                else if (VillageSpeedX2RB.Checked || VillageSpeedX3RB.Checked)
-                {
-                    var speed = VillageSpeedX2RB.Checked ? GameSpeeds[1] : GameSpeeds[2];
-                    
-                    // speed setters for dialog begin/end events
-                    ActivateFeature(Feature.GameSpeedVillageDialog1);
-                    ActivateFeature(Feature.GameSpeedVillageDialog2);
-                    ActivateFeature(Feature.GameSpeedVillageDialog3, speed);
+                    if (SpellConstuctorCB.Checked)
+                    {
+                        ActivateFeature(Feature.SpellConstructor1);
+                        ActivateFeature(Feature.SpellConstructor2);
+                        ActivateFeature(Feature.SpellConstructor3);
+                    }
+                    else
+                    {
+                        DeactivateFeature(Feature.SpellConstructor1);
+                        DeactivateFeature(Feature.SpellConstructor2);
+                        DeactivateFeature(Feature.SpellConstructor3);
+                    }
 
-                    // speed setter for briefing zone enter event
-                    ActivateFeature(Feature.GameSpeedVillageRedirect);
-                    ActivateFeature(Feature.GameSpeedVillageSet1);
-                    ActivateFeature(Feature.GameSpeedVillageSet2, speed);
-                }
+                    if (PartyExpCB.Checked)
+                    {
+                        ActivateFeature(Feature.PartyExp);
+                    }
+                    else
+                    {
+                        DeactivateFeature(Feature.PartyExp);
+                    }
 
-                if (SpellConstuctorCB.Checked)
-                {
-                    ActivateFeature(Feature.SpellConstructor1);
-                    ActivateFeature(Feature.SpellConstructor2);
-                    ActivateFeature(Feature.SpellConstructor3);
-                }
-                else
-                {
-                    DeactivateFeature(Feature.SpellConstructor1);
-                    DeactivateFeature(Feature.SpellConstructor2);
-                    DeactivateFeature(Feature.SpellConstructor3);
-                }
-
-                if (PartyExpCB.Checked)
-                {
-                    ActivateFeature(Feature.PartyExp);
-                }
-                else
-                {
-                    DeactivateFeature(Feature.PartyExp);
-                }
-
-                if (SecondarySkillsCB.Checked)
-                {
-                    ActivateFeature(Feature.SecondarySkillsCost1);
-                    ActivateFeature(Feature.SecondarySkillsCost2);
-                }
-                else
-                {
-                    DeactivateFeature(Feature.SecondarySkillsCost1);
-                    DeactivateFeature(Feature.SecondarySkillsCost2);
+                    if (SecondarySkillsCB.Checked)
+                    {
+                        ActivateFeature(Feature.SecondarySkillsCost1);
+                        ActivateFeature(Feature.SecondarySkillsCost2);
+                    }
+                    else
+                    {
+                        DeactivateFeature(Feature.SecondarySkillsCost1);
+                        DeactivateFeature(Feature.SecondarySkillsCost2);
+                    }
                 }
 
                 if (Config.MakeBackup)
                 {
-                    BackupFile(Config.GameExePath);
+                    BackupFile(Path.GetFullPath(Config.GameExePath));
                 }
 
                 File.WriteAllBytes(Config.GameExePath, ExeBytes);
